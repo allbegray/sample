@@ -1,4 +1,4 @@
-<%@ tag pageEncoding="utf-8" %>
+<%@ tag pageEncoding="utf-8" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="page" tagdir="/WEB-INF/tags/page" %>
 <%@ attribute name="title" required="false" %>

@@ -29,7 +29,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService());
+        auth
+                .inMemoryAuthentication()
+                .withUser("user").password("1234").roles("USER");
+//        auth.userDetailsService(userDetailsService());
     }
 
 }
