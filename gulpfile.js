@@ -26,7 +26,10 @@ gulp.task('bower_components_minify_copy', ['clean'], function () {
 
     '/bootstrap-table/dist/*.min.*' : '/bootstrap-table/',
     '/bootstrap-table/dist/extensions/*/*.min.js' : '/bootstrap-table/extensions',
-    '/bootstrap-table/dist/extensions/*/*.css' : '/bootstrap-table/extensions'
+    '/bootstrap-table/dist/extensions/*/*.css' : '/bootstrap-table/extensions',
+
+    '/parsleyjs/dist/*.min.js' : '/parsleyjs/',
+    '/parsleyjs/dist/i18n/*' : '/parsleyjs/i18n/'
   };
 
   for (var k in mappings) {
