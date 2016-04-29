@@ -27,7 +27,7 @@ public class TestSearchForm extends AbstractSearchForm {
     }
 
     @Override
-    public String uri() {
+    public String getUri() {
         return null;
     }
 

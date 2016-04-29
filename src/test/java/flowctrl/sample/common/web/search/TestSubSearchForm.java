@@ -6,7 +6,7 @@ package flowctrl.sample.common.web.search;
 public class TestSubSearchForm extends TestSearchForm {
 
     @Override
-    public String uri() {
+    public String getUri() {
         return "/test_sub";
     }
 
