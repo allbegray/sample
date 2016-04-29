@@ -103,6 +103,7 @@ Desktop.ini
 
 /bower_components
 /node_modules
+/webapp/META-INF
 /.idea
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
