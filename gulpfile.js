@@ -1,5 +1,5 @@
 var BOWER_COMPONENTS_PATH = 'bower_components';
-var DIST_PATH = 'webapp/resources';
+var DIST_PATH = 'webapp/resources/lib';
 
 var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
