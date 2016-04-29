@@ -22,7 +22,11 @@ gulp.task('bower_components_minify_copy', ['clean'], function () {
 
     '/jquery/dist/jquery.min.js' : '/jquery/',
 
-    '/moment/min/moment-with-locales.min.js' : '/moment/'
+    '/moment/min/moment-with-locales.min.js' : '/moment/',
+
+    '/bootstrap-table/dist/*.min.*' : '/bootstrap-table/',
+    '/bootstrap-table/dist/extensions/*/*.min.js' : '/bootstrap-table/extensions',
+    '/bootstrap-table/dist/extensions/*/*.css' : '/bootstrap-table/extensions'
   };
 
   for (var k in mappings) {
