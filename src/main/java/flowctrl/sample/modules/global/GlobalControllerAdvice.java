@@ -1,10 +1,12 @@
 package flowctrl.sample.modules.global;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,6 +16,14 @@ import java.util.Date;
  */
 @ControllerAdvice
 public class GlobalControllerAdvice {
+
+    @Autowired
+    private GlobalRequest g;
+
+    @ModelAttribute("g")
+    public GlobalRequest g() {
+        return g;
+    }
 
     @InitBinder
     public void dataBinding(WebDataBinder binder) {
