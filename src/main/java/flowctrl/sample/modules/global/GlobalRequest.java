@@ -6,7 +6,6 @@ import org.springframework.util.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-import java.util.stream.Collectors;
 
 /**
  * Created by allbegray on 2016-04-30.
@@ -14,24 +13,20 @@ import java.util.stream.Collectors;
 @Component
 public class GlobalRequest {
 
-    private ThreadLocal<Stack<String>> scripts = new ThreadLocal<>();
-
-    public Stack<String> getScripts() {
-        Stack<String> stack = scripts.get();
-        if (stack == null) {
-            stack = new Stack<>();
-            scripts.set(stack);
+    private ThreadLocal<Stack<String>> scripts = new ThreadLocal<Stack<String>>(){
+        @Override
+        protected Stack<String> initialValue() {
+            return new Stack<>();
         }
-        return stack;
-    }
+    };
 
     public void pushScript(String script) {
         if (StringUtils.hasText(script))
-            getScripts().add(script);
+            scripts.get().add(script);
     }
 
     public List<String> popScripts() {
-        List<String> items = new ArrayList<>(getScripts());
+        List<String> items = new ArrayList<>(scripts.get());
         scripts.remove();
         return items;
     }
