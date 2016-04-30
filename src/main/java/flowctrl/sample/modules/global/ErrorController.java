@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Created by allbegray on 2016-04-29.
+ * Created by allbegray on 2016-04-30.
  */
 @Controller
 public class ErrorController {
