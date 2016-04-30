@@ -18,7 +18,7 @@ public abstract class AbstractSearchForm {
     private List<Parameter> makeParameters() {
         List<Parameter> parameters = new ArrayList<>();
         Class<?> clazz = this.getClass();
-        while (true) {
+        while (clazz != AbstractSearchForm.class) {
             final Field[] fields = clazz.getDeclaredFields();
             for (Field field : fields) {
                 Queryable annotation = field.getAnnotation(Queryable.class);
@@ -32,10 +32,7 @@ public abstract class AbstractSearchForm {
                     }
                 }
             }
-            if (clazz == AbstractSearchForm.class)
-                break;
-            else
-                clazz = clazz.getSuperclass();
+            clazz = clazz.getSuperclass();
         }
         return parameters;
     }
