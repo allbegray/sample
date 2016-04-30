@@ -1,6 +1,7 @@
 package flowctrl.sample.modules.global;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,8 @@ public class GlobalRequest {
     }
 
     public void pushScript(String script) {
-        getScripts().add(script);
+        if (StringUtils.hasText(script))
+            getScripts().add(script);
     }
 
     public List<String> popScripts() {

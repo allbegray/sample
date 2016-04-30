@@ -12,9 +12,6 @@
         <page:footer/>
 
         <page:js/>
-        <page:scripts/>
-        <c:forEach items="${g.popScripts()}" var="script">
-            ${script}
-        </c:forEach>
+        <page:scripts pop="true" />
     </page:body>
 </page:html>
