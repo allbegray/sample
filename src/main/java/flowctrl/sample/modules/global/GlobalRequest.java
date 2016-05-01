@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.util.*;
+import java.util.function.Supplier;
 
 /**
  * Created by allbegray on 2016-04-30.
@@ -20,28 +21,30 @@ public class GlobalRequest {
         }
     };
 
-    private void removeContext(String key) {
-        context.get().remove(key);
+    private <T> T getContext(String key, Supplier<T> supplier) {
+        T t = (T) context.get().get(key);
+        if (t == null) {
+            t = supplier.get();
+            context.get().put(key, t);
+        }
+        return t;
     }
 
-    private Stack<String> getScripts() {
-        Stack<String> stack = (Stack<String>) context.get().get(G_SCRIPT_TAG);
-        if (stack == null) {
-            stack = new Stack<>();
-            context.get().put(G_SCRIPT_TAG, stack);
+    private <T> T popContext(String key, Supplier<T> supplier) {
+        T t = (T) context.get().get(key);
+        if (t != null) {
+            context.get().remove(key);
         }
-        return stack;
+        return t;
     }
 
     public void pushScript(String script) {
         if (StringUtils.hasText(script))
-            getScripts().add(script);
+            getContext(G_SCRIPT_TAG, Stack::new).add(script);
     }
 
     public List<String> popScripts() {
-        List<String> items = new ArrayList<>(getScripts());
-        removeContext(G_SCRIPT_TAG);
-        return items;
+        return new ArrayList<>(popContext(G_SCRIPT_TAG, Stack::new));
     }
 
 }
