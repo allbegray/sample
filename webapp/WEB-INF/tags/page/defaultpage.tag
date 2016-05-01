@@ -12,6 +12,6 @@
         <page:footer/>
 
         <page:js/>
-        <page:scripts pop="true" />
+        <page:scripts flush="true" />
     </page:body>
 </page:html>
