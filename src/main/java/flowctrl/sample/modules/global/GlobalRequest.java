@@ -3,9 +3,7 @@ package flowctrl.sample.modules.global;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Created by allbegray on 2016-04-30.
@@ -13,21 +11,36 @@ import java.util.Stack;
 @Component
 public class GlobalRequest {
 
-    private ThreadLocal<Stack<String>> scripts = new ThreadLocal<Stack<String>>(){
+    private final static String G_SCRIPT_TAG = "G_SCRIPT_TAG";
+
+    private ThreadLocal<Map<String, Object>> context = new ThreadLocal<Map<String, Object>>() {
         @Override
-        protected Stack<String> initialValue() {
-            return new Stack<>();
+        protected Map<String, Object> initialValue() {
+            return new HashMap<>();
         }
     };
 
+    private void removeContext(String key) {
+        context.get().remove(key);
+    }
+
+    private Stack<String> getScripts() {
+        Stack<String> stack = (Stack<String>) context.get().get(G_SCRIPT_TAG);
+        if (stack == null) {
+            stack = new Stack<>();
+            context.get().put(G_SCRIPT_TAG, stack);
+        }
+        return stack;
+    }
+
     public void pushScript(String script) {
         if (StringUtils.hasText(script))
-            scripts.get().add(script);
+            getScripts().add(script);
     }
 
     public List<String> popScripts() {
-        List<String> items = new ArrayList<>(scripts.get());
-        scripts.remove();
+        List<String> items = new ArrayList<>(getScripts());
+        removeContext(G_SCRIPT_TAG);
         return items;
     }
 
