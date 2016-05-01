@@ -35,7 +35,7 @@ public class GlobalRequest {
         if (t != null) {
             context.get().remove(key);
         }
-        return t;
+        return t != null ? t : supplier.get();
     }
 
     public void pushScript(String script) {
