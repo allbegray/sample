@@ -2,13 +2,9 @@
  * Created by allbegray on 2016-05-02.
  */
 $(function () {
-    $.ajaxSetup({ cache: false });
+    $.ajaxSetup({cache: false});
     $(document).ajaxStart(function () {
-        // 블럭 UI 설정
-        // $.blockUI({
-        //     message: options.AjaxWait.AjaxWaitMessage,
-        //     css: options.AjaxWait.AjaxWaitMessageCss
-        // });
+        $.blockUI({message: '로딩중...'});
     }).ajaxSend(function (event, jqxhr, settings) {
     }).ajaxError(function (event, jqxhr, settings) {
         if (jqxhr.status == 0) {
@@ -25,7 +21,6 @@ $(function () {
     }).ajaxSuccess(function (event, jqxhr, settings) {
     }).ajaxComplete(function (event, jqxhr, settings) {
     }).ajaxStop(function () {
-        // 블럭 UI 해제
-        // $.unblockUI();
+        $.unblockUI();
     });
 });
