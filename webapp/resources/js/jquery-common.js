@@ -9,7 +9,7 @@ $(function () {
     }).ajaxError(function (event, jqxhr, settings) {
         if (jqxhr.status == 0) {
             alert('오프라인 상태입니다. 네트워크를 확인하세요.');
-        } else if (jqxhr.status == 403) {
+        } else if (jqxhr.status == 401) {
             alert('로그인 정보가 존재하지 않습니다.');
         } else if (jqxhr.status == 403) {
             alert("접근 권한이 없습니다. 로그인 정보를 확인하세요.");
