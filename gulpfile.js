@@ -22,6 +22,8 @@ gulp.task('bower_components_minify_copy', ['clean'], function () {
 
     '/jquery/dist/jquery.min.js' : '/jquery/',
 
+    '/underscore/underscore-min.js' : '/underscore/',
+
     '/moment/min/moment-with-locales.min.js' : '/moment/',
 
     '/bootstrap-table/dist/*.min.*' : '/bootstrap-table/',
