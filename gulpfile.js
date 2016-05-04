@@ -29,7 +29,14 @@ gulp.task('bower_components_minify_copy', ['clean'], function () {
     '/bootstrap-table/dist/extensions/*/*.css' : '/bootstrap-table/extensions',
 
     '/parsleyjs/dist/*.min.js' : '/parsleyjs/',
-    '/parsleyjs/dist/i18n/*' : '/parsleyjs/i18n/'
+    '/parsleyjs/dist/i18n/ko.js' : '/parsleyjs/i18n/',
+
+    '/blockui/jquery.blockUI.js' : '/jquery/',
+
+    '/bootstrap-datepicker/dist/css/*.min.css' : '/bootstrap-datepicker/css',
+    '/bootstrap-datepicker/dist/js/*.min.js' : '/bootstrap-datepicker/js',
+    '/bootstrap-datepicker/dist/locales/*.ko.min.js' : '/bootstrap-datepicker/locales',
+
   };
 
   for (var k in mappings) {
