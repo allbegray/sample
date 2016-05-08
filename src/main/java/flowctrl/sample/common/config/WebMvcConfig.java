@@ -59,7 +59,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasenames("i18n.messages", "classpath:org/hibernate/validator/ValidationMessages");
+        messageSource.setBasenames("i18n.messages", "classpath:org/hibernate/validator/ValidationMessages", "classpath:org/springframework/security/messages");
         messageSource.setDefaultEncoding("UTF-8");
         messageSource.setUseCodeAsDefaultMessage(true);
         messageSource.setFallbackToSystemLocale(false);

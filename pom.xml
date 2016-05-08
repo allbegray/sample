@@ -8,17 +8,6 @@
     <name>sample Maven Webapp</name>
     <url>http://maven.apache.org</url>
 
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/libs-milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -28,8 +17,8 @@
 
         <com.querydsl.version>4.1.0</com.querydsl.version>
         <org.hibernate.version>5.1.0.Final</org.hibernate.version>
-        <org.springframework.version>4.2.5.RELEASE</org.springframework.version>
-        <org.springframework.security.version>4.1.0.RC2</org.springframework.security.version>
+        <org.springframework.version>4.2.6.RELEASE</org.springframework.version>
+        <org.springframework.security.version>4.1.0.RELEASE</org.springframework.security.version>
         <org.springframework.data.version>1.10.1.RELEASE</org.springframework.data.version>
         <ch.qos.logback.version>1.1.7</ch.qos.logback.version>
         <org.slf4j.version>1.7.21</org.slf4j.version>
