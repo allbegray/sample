@@ -95,6 +95,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public MappingJackson2JsonView jsonView() {
         MappingJackson2JsonView jsonView = new MappingJackson2JsonView();
         jsonView.setPrettyPrint(true);
+        jsonView.setObjectMapper(objectMapper);
         return jsonView;
     }
 
