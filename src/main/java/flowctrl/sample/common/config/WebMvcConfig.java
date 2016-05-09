@@ -20,6 +20,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import java.util.List;
 
@@ -88,6 +89,13 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
         multipartResolver.setDefaultEncoding("UTF-8");
         return multipartResolver;
+    }
+
+    @Bean
+    public MappingJackson2JsonView jsonView() {
+        MappingJackson2JsonView jsonView = new MappingJackson2JsonView();
+        jsonView.setPrettyPrint(true);
+        return jsonView;
     }
 
 }
