@@ -1,5 +1,6 @@
 package flowctrl.sample.common.initializer;
 
+import flowctrl.sample.Constants;
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
@@ -12,7 +13,7 @@ public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplic
     @Override
     protected void beforeSpringSecurityFilterChain(ServletContext servletContext) {
         CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
-        encodingFilter.setEncoding("UTF-8");
+        encodingFilter.setEncoding(Constants.ENCODING);
         encodingFilter.setForceEncoding(true);
         insertFilters(servletContext, encodingFilter);
 

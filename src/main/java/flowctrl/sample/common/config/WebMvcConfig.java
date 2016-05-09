@@ -66,7 +66,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasenames("i18n.messages", "classpath:org/hibernate/validator/ValidationMessages", "classpath:org/springframework/security/messages");
-        messageSource.setDefaultEncoding(Constants.DEFAULT_ENCODING);
+        messageSource.setDefaultEncoding(Constants.ENCODING);
         messageSource.setUseCodeAsDefaultMessage(true);
         messageSource.setFallbackToSystemLocale(false);
         return messageSource;
@@ -88,7 +88,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setDefaultEncoding(Constants.DEFAULT_ENCODING);
+        multipartResolver.setDefaultEncoding(Constants.ENCODING);
         return multipartResolver;
     }
 
