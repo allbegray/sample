@@ -14,6 +14,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -26,7 +27,7 @@ import java.util.List;
  * Created by allbegray on 2016-04-28.
  */
 @Configuration
-@ComponentScan(basePackages = "flowctrl.sample", useDefaultFilters = false,includeFilters = {@ComponentScan.Filter(Controller.class)})
+@ComponentScan(basePackages = "flowctrl.sample", useDefaultFilters = false, includeFilters = {@ComponentScan.Filter(Controller.class)})
 @EnableWebMvc
 @EnableSpringDataWebSupport
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
@@ -80,6 +81,13 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public Validator getValidator() {
         return validator();
+    }
+
+    @Bean
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setDefaultEncoding("UTF-8");
+        return multipartResolver;
     }
 
 }
