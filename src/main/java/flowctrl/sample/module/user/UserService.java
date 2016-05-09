@@ -1,6 +1,6 @@
-package flowctrl.sample.modules.user;
+package flowctrl.sample.module.user;
 
-import flowctrl.sample.entitys.User;
+import flowctrl.sample.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

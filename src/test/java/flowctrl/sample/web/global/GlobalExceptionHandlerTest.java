@@ -1,13 +1,11 @@
-package flowctrl.sample.modules.global;
+package flowctrl.sample.web.global;
 
-import flowctrl.sample.common.config.PersistenceConfig;
 import flowctrl.sample.common.config.RootConfig;
 import flowctrl.sample.common.config.WebMvcConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.test.context.ContextConfiguration;

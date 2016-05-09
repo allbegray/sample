@@ -1,4 +1,4 @@
-package flowctrl.sample.entitys;
+package flowctrl.sample.entity;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;

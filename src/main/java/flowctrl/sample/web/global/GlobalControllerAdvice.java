@@ -1,4 +1,4 @@
-package flowctrl.sample.modules.global;
+package flowctrl.sample.web.global;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;

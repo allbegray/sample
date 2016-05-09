@@ -1,6 +1,7 @@
 package flowctrl.sample.common.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import flowctrl.sample.Constants;
 import org.hibernate.validator.HibernateValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -28,7 +29,7 @@ import java.util.List;
  * Created by allbegray on 2016-04-28.
  */
 @Configuration
-@ComponentScan(basePackages = "flowctrl.sample", useDefaultFilters = false, includeFilters = {@ComponentScan.Filter(Controller.class)})
+@ComponentScan(basePackages = Constants.WEB_PACKAGE, useDefaultFilters = false, includeFilters = {@ComponentScan.Filter(Controller.class)})
 @EnableWebMvc
 @EnableSpringDataWebSupport
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
@@ -65,7 +66,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasenames("i18n.messages", "classpath:org/hibernate/validator/ValidationMessages", "classpath:org/springframework/security/messages");
-        messageSource.setDefaultEncoding("UTF-8");
+        messageSource.setDefaultEncoding(Constants.DEFAULT_ENCODING);
         messageSource.setUseCodeAsDefaultMessage(true);
         messageSource.setFallbackToSystemLocale(false);
         return messageSource;
@@ -87,7 +88,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setDefaultEncoding("UTF-8");
+        multipartResolver.setDefaultEncoding(Constants.DEFAULT_ENCODING);
         return multipartResolver;
     }
 

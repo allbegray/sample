@@ -1,6 +1,6 @@
-package flowctrl.sample.modules.board;
+package flowctrl.sample.module.board;
 
-import flowctrl.sample.entitys.Board;
+import flowctrl.sample.entity.Board;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

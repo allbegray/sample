@@ -1,6 +1,6 @@
-package flowctrl.sample.modules.board;
+package flowctrl.sample.module.board;
 
-import flowctrl.sample.entitys.Board;
+import flowctrl.sample.entity.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 

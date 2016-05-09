@@ -1,4 +1,4 @@
-package flowctrl.sample.modules.global;
+package flowctrl.sample.web.global;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package flowctrl.sample.modules.global;
+package flowctrl.sample.web.global;
 
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;

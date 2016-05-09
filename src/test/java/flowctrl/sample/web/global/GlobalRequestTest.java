@@ -1,9 +1,7 @@
-package flowctrl.sample.modules.global;
+package flowctrl.sample.web.global;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by allbegray on 2016-04-30.

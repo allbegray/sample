@@ -1,7 +1,7 @@
 package flowctrl.sample.service.security;
 
-import flowctrl.sample.entitys.User;
-import flowctrl.sample.modules.user.UserRepository;
+import flowctrl.sample.entity.User;
+import flowctrl.sample.module.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

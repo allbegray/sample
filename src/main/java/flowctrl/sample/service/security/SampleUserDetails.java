@@ -1,6 +1,6 @@
 package flowctrl.sample.service.security;
 
-import flowctrl.sample.entitys.User;
+import flowctrl.sample.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

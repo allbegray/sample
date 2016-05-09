@@ -1,6 +1,6 @@
-package flowctrl.sample.modules.user;
+package flowctrl.sample.module.user;
 
-import flowctrl.sample.entitys.User;
+import flowctrl.sample.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 

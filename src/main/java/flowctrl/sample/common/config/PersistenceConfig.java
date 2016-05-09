@@ -1,5 +1,6 @@
 package flowctrl.sample.common.config;
 
+import flowctrl.sample.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +22,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement(proxyTargetClass = true)
-@EnableJpaRepositories(basePackages = "flowctrl.sample.modules")
+@EnableJpaRepositories(basePackages = Constants.JPA_PACKAGE)
 @EnableJpaAuditing
 @PropertySource("classpath:jdbc.properties")
 public class PersistenceConfig {
@@ -37,7 +38,7 @@ public class PersistenceConfig {
     private static final String PROPERTY_NAME_HIBERNATE_NAMING_STRATEGY = "hibernate.ejb.naming_strategy";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
 
-    private static final String PROPERTY_PACKAGES_TO_SCAN = "flowctrl.sample.entitys";
+    private static final String PROPERTY_PACKAGES_TO_SCAN = Constants.ENTITY_PACKAGE;
 
     @Autowired
     private Environment environment;
