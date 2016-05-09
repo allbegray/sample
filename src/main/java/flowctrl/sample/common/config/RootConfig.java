@@ -8,12 +8,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.stereotype.Controller;
 
 /**
  * Created by allbegray on 2016-04-28.
  */
 @Configuration
-@ComponentScan(basePackages = "flowctrl.sample", excludeFilters = {@ComponentScan.Filter(Configuration.class)})
+@ComponentScan(basePackages = "flowctrl.sample", excludeFilters = {@ComponentScan.Filter({Configuration.class, Controller.class})})
 @Import(value = {PersistenceConfig.class})
 public class RootConfig {
 
