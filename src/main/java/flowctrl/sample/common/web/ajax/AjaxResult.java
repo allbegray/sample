@@ -80,16 +80,23 @@ public class AjaxResult {
 
         MessageSource messageSource = MessageSourceContextHolder.getMessageSource();
 
-        List<FieldError> errors = bindingResult.getFieldErrors();
         List<ErrorMessage> errorMessages = new ArrayList<>();
-        for (FieldError error : errors) {
-            StringBuilder errorCode = new StringBuilder();
-            errorCode.append(error.getCode()).append(".");
-            errorCode.append(error.getObjectName()).append(".");
-            errorCode.append(error.getField()).append(".");
+        for (FieldError error : bindingResult.getFieldErrors()) {
 
-            String localizedErrorMessage = messageSource.getMessage(errorCode.toString(), null, error.getDefaultMessage(), LocaleContextHolder.getLocale());
-            errorMessages.add(new ErrorMessage(error.getField(), localizedErrorMessage));
+//            StringBuilder errorCode = new StringBuilder();
+//            errorCode.append(error.getCode()).append(".");
+//            errorCode.append(error.getObjectName()).append(".");
+//            errorCode.append(error.getField()).append(".");
+//            String msg = messageSource.getMessage(errorCode.toString(), null, error.getDefaultMessage(), LocaleContextHolder.getLocale());
+
+            String msg = null;
+            if (messageSource != null) {
+                messageSource.getMessage(error.getCode(), error.getArguments(), error.getDefaultMessage(), LocaleContextHolder.getLocale());
+            } else {
+                msg = error.getDefaultMessage();
+            }
+
+            errorMessages.add(new ErrorMessage(error.getField(), msg));
         }
         ajaxResult.setErrorMessages(errorMessages);
 
