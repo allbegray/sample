@@ -1,5 +1,8 @@
 package flowctrl.sample.common.web.ajax;
 
+import flowctrl.sample.common.spring.MessageSourceContextHolder;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.Conventions;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -75,10 +78,18 @@ public class AjaxResult {
 
         AjaxResult ajaxResult = jsonWithError(bindingResult.getGlobalError().getDefaultMessage());
 
+        MessageSource messageSource = MessageSourceContextHolder.getMessageSource();
+
         List<FieldError> errors = bindingResult.getFieldErrors();
         List<ErrorMessage> errorMessages = new ArrayList<>();
         for (FieldError error : errors) {
-            errorMessages.add(new ErrorMessage(error.getField(), error.getDefaultMessage()));
+            StringBuilder errorCode = new StringBuilder();
+            errorCode.append(error.getCode()).append(".");
+            errorCode.append(error.getObjectName()).append(".");
+            errorCode.append(error.getField()).append(".");
+
+            String localizedErrorMessage = messageSource.getMessage(errorCode.toString(), null, error.getDefaultMessage(), LocaleContextHolder.getLocale());
+            errorMessages.add(new ErrorMessage(error.getField(), localizedErrorMessage));
         }
         ajaxResult.setErrorMessages(errorMessages);
 

@@ -1,4 +1,4 @@
-package flowctrl.sample.common.util;
+package flowctrl.sample.common.spring;
 
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
