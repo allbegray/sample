@@ -8,7 +8,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -16,14 +15,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.i18n.FixedLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by allbegray on 2016-04-28.
@@ -36,6 +38,9 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @Autowired
+    private MessageSource messageSource;
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -63,20 +68,10 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public MessageSource messageSource() {
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasenames("i18n.messages", "classpath:org/hibernate/validator/ValidationMessages", "classpath:org/springframework/security/messages");
-        messageSource.setDefaultEncoding(Constants.ENCODING);
-        messageSource.setUseCodeAsDefaultMessage(true);
-        messageSource.setFallbackToSystemLocale(false);
-        return messageSource;
-    }
-
-    @Bean
     public LocalValidatorFactoryBean validator() {
         LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
         localValidatorFactoryBean.setProviderClass(HibernateValidator.class);
-        localValidatorFactoryBean.setValidationMessageSource(messageSource());
+        localValidatorFactoryBean.setValidationMessageSource(messageSource);
         return localValidatorFactoryBean;
     }
 
@@ -98,6 +93,13 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         jsonView.setPrettyPrint(true);
         jsonView.setObjectMapper(objectMapper);
         return jsonView;
+    }
+
+    @Bean
+    public LocaleResolver localeResolver() {
+        FixedLocaleResolver resolver = new FixedLocaleResolver();
+        resolver.setDefaultLocale(Locale.KOREA);
+        return resolver;
     }
 
 }

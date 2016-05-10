@@ -5,10 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import flowctrl.sample.Constants;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -28,6 +30,16 @@ public class RootConfig {
         objectMapper.registerModule(new JavaTimeModule());
 
         return objectMapper;
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        messageSource.setBasenames("i18n.messages", "classpath:org/hibernate/validator/ValidationMessages", "classpath:org/springframework/security/messages");
+        messageSource.setDefaultEncoding(Constants.ENCODING);
+        messageSource.setUseCodeAsDefaultMessage(false);
+        messageSource.setFallbackToSystemLocale(false);
+        return messageSource;
     }
 
 }

@@ -1,12 +1,13 @@
 package flowctrl.sample.common.web.ajax;
 
-import flowctrl.sample.common.spring.MessageSourceContextHolder;
+import flowctrl.sample.common.spring.StaticContextAccessor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.Conventions;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 
 import java.util.*;
 
@@ -76,26 +77,19 @@ public class AjaxResult {
     public static AjaxResult jsonWithError(BindingResult bindingResult) {
         Assert.isTrue(bindingResult.hasErrors(), "\n\n\tfollow these guidelines.\n\tif (bindingResult.hasErrors()) {\n\t\treturn AjaxResult.jsonWithError(bindingResult);\n\t}\n");
 
-        AjaxResult ajaxResult = jsonWithError(bindingResult.getGlobalError().getDefaultMessage());
+        ObjectError objectError = bindingResult.getGlobalError();
+        AjaxResult ajaxResult = jsonWithError(objectError != null ? objectError.getDefaultMessage() : null);
 
-        MessageSource messageSource = MessageSourceContextHolder.getMessageSource();
+        MessageSource messageSource = StaticContextAccessor.getBean(MessageSource.class);
 
         List<ErrorMessage> errorMessages = new ArrayList<>();
         for (FieldError error : bindingResult.getFieldErrors()) {
-
-//            StringBuilder errorCode = new StringBuilder();
-//            errorCode.append(error.getCode()).append(".");
-//            errorCode.append(error.getObjectName()).append(".");
-//            errorCode.append(error.getField()).append(".");
-//            String msg = messageSource.getMessage(errorCode.toString(), null, error.getDefaultMessage(), LocaleContextHolder.getLocale());
-
-            String msg = null;
+            String msg;
             if (messageSource != null) {
-                messageSource.getMessage(error.getCode(), error.getArguments(), error.getDefaultMessage(), LocaleContextHolder.getLocale());
+                msg = messageSource.getMessage(error.getCode(), error.getArguments(), error.getDefaultMessage(), LocaleContextHolder.getLocale());
             } else {
                 msg = error.getDefaultMessage();
             }
-
             errorMessages.add(new ErrorMessage(error.getField(), msg));
         }
         ajaxResult.setErrorMessages(errorMessages);
