@@ -41,13 +41,13 @@ public class GlobalExceptionHandlerTest {
 
     @Test
     public void handleMethodArgumentTypeMismatchExceptionTest() throws Exception {
-        this.mockMvc.perform(get("/shuttle/1"))
+        this.mockMvc.perform(get("/shuttle/x"))
                 .andDo(print())
                 .andExpect(status().isBadRequest());
     }
 
     @Controller
-    static class TestContoller {
+    static public class TestContoller {
         @RequestMapping(method = RequestMethod.GET, value = "/shuttle/{number}")
         public ResponseEntity shuttle(@PathVariable int number) {
             System.out.println("TestContoller - shuttle 메서드");
