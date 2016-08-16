@@ -17,13 +17,15 @@ import java.io.File;
 public class EmbeddedTomcat {
 
     public static void main(String[] args) throws ServletException, LifecycleException {
-        String webappDirLocation = "webapp/";
+        String docBase = "webapp/";
+        String contextPath = "";
+
         Tomcat tomcat = new Tomcat();
         tomcat.setPort(8080);
 
-        StandardContext ctx = (StandardContext) tomcat.addWebapp("/", new File(webappDirLocation).getAbsolutePath());
+        StandardContext ctx = (StandardContext) tomcat.addWebapp(contextPath, new File(docBase).getAbsolutePath());
 
-        File additionWebInfClasses = new File("build/classes");
+        File additionWebInfClasses = new File("target/classes");
         WebResourceRoot resources = new StandardRoot(ctx);
         resources.addPreResources(new DirResourceSet(resources, "/WEB-INF/classes", additionWebInfClasses.getAbsolutePath(), "/"));
         ctx.setResources(resources);

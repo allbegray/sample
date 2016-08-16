@@ -7,6 +7,6 @@ import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 /**
  * Created by allbegray on 2016-04-29.
  */
-public interface BoardRepository extends JpaRepository<Board, Long>, QueryDslPredicateExecutor<Board> {
+public interface BoardRepository extends JpaRepository<Board, Long>, QueryDslPredicateExecutor<Board>, BoardRepositoryCustom {
 
 }

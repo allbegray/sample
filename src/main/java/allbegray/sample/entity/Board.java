@@ -20,7 +20,7 @@ public class Board {
     private Long id;
 
     @Column
-    private String subject;
+    private String title;
 
     @Column
     private String content;
@@ -41,12 +41,12 @@ public class Board {
         this.id = id;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getTitle() {
+        return title;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
