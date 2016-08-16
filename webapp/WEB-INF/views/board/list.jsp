@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="page" tagdir="/WEB-INF/tags/page" %>
 <page:defaultpage>
 
     <div>
-        <a href="<c:url value="/board/add" />" class="btn btn-primary">생성</a>
+        <a href="${s:mvcUrl("boardController.addForm").build()}" class="btn btn-primary">생성</a>
     </div>
 
     <table id="tbl-board" class="table"
            data-toggle="table"
-           data-url="<c:url value="/rest/board/list"/>"
+           data-url="${s:mvcUrl("boardRestController.list").build()}"
            data-sort-name="date"
            data-sort-order="desc"
            data-search="true"

@@ -1,6 +1,7 @@
 package allbegray.sample.module.board;
 
 import allbegray.sample.dto.BoardDTO;
+import allbegray.sample.entity.Board;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +20,16 @@ public class BoardService {
     @Transactional(readOnly = true)
     public Page<BoardDTO> findAllByContext(Pageable pageable) {
         return boardRepository.findAllByContext(pageable);
+    }
+
+    @Transactional
+    public Board save(Board board) {
+        return boardRepository.save(board);
+    }
+
+    @Transactional(readOnly = true)
+    public Board findOne(Long id) {
+        return boardRepository.findOne(id);
     }
 
 }

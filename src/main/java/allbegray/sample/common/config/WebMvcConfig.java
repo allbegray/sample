@@ -2,6 +2,7 @@ package allbegray.sample.common.config;
 
 import allbegray.sample.Constants;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.CaseFormat;
 import org.hibernate.validator.HibernateValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -14,12 +15,16 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.handler.HandlerMethodMappingNamingStrategy;
 import org.springframework.web.servlet.i18n.FixedLocaleResolver;
+import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
@@ -100,6 +105,31 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         FixedLocaleResolver resolver = new FixedLocaleResolver();
         resolver.setDefaultLocale(Locale.KOREA);
         return resolver;
+    }
+
+    @Bean
+    public RequestMappingHandlerMapping requestMappingHandlerMapping() {
+        RequestMappingHandlerMapping handlerMapping = new RequestMappingHandlerMapping();
+        handlerMapping.setHandlerMethodMappingNamingStrategy(new HandlerMethodMappingNamingStrategy<RequestMappingInfo>() {
+
+            public static final String SEPARATOR = ".";
+
+            @Override
+            public String getName(HandlerMethod handlerMethod, RequestMappingInfo mapping) {
+                if (mapping.getName() != null) {
+                    return mapping.getName();
+                }
+
+                String simpleTypeName = handlerMethod.getBeanType().getSimpleName();
+
+                StringBuilder sb = new StringBuilder();
+                sb.append(CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, simpleTypeName));
+                sb.append(SEPARATOR).append(handlerMethod.getMethod().getName());
+                return sb.toString();
+            }
+
+        });
+        return handlerMapping;
     }
 
 }
