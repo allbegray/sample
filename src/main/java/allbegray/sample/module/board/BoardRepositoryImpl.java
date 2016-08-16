@@ -51,7 +51,7 @@ public class BoardRepositoryImpl extends QueryDslRepositorySupport implements Bo
                                     return board.updatedAt;
                             }
                             return null;
-                        })
+                        }, board.updatedAt.desc())
                 )
                 .fetchResults();
 
