@@ -62,6 +62,9 @@ public class FreemarkerTest {
 
         DynamicQuery dynamicQuery = sqlTemplate.buildQuery("test", dataModel);
         System.out.println(dynamicQuery);
+
+        dynamicQuery = sqlTemplate.buildQuery("test", dataModel, true);
+        System.out.println(dynamicQuery);
     }
 
 }

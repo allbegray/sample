@@ -35,9 +35,14 @@ public class FreemarkerSqlTemplate {
     }
 
     public DynamicQuery buildQuery(String templateName, Map<String, Object> dataModel) {
+        return buildQuery(templateName, dataModel, false);
+    }
+
+    public DynamicQuery buildQuery(String templateName, Map<String, Object> dataModel, boolean withPositionalIndex) {
         try {
             final Map<String, Object> finalDataModel = new HashMap<>(dataModel);
             ParamMethod paramMethod = new ParamMethod();
+            paramMethod.setWithPositionalIndex(withPositionalIndex);
             finalDataModel.put(paramMethodName, paramMethod);
 
             Template template = cfg.getTemplate(templateName + templateNameSuffix);

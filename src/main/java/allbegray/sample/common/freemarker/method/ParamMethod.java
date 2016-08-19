@@ -16,6 +16,10 @@ public class ParamMethod implements TemplateMethodModelEx {
     private int index = 1;
     private List<Object> params = new ArrayList<>();
 
+    public void setWithPositionalIndex(boolean withPositionalIndex) {
+        this.withPositionalIndex = withPositionalIndex;
+    }
+
     public List<Object> getParams() {
         return Collections.unmodifiableList(params);
     }
@@ -27,7 +31,7 @@ public class ParamMethod implements TemplateMethodModelEx {
         }
 
         params.add(arguments.get(0));
-        return withPositionalIndex ? "?" : "?" + (index++);
+        return withPositionalIndex ? "?" + (index++) : "?";
     }
 
 }
