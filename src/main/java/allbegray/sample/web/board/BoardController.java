@@ -36,7 +36,7 @@ public class BoardController {
     }
 
     @RequestMapping(value = "/page")
-    public String page(Pageable pageable, Model model) {
+    public String page(BoardSearchForm boardSearchForm, Pageable pageable, Model model) {
 
 //        for (int i = 0; i < 100; i++) {
 //            Board board = new Board();
@@ -45,8 +45,9 @@ public class BoardController {
 //            boardService.save(board);
 //        }
 
-        Page<BoardDTO> page = boardService.findAllByContext(pageable);
+        Page<BoardDTO> page = boardService.findAllByContext(boardSearchForm, pageable);
         model.addAttribute("page", new PageWrapper<>(page));
+        model.addAttribute("boardSearchForm", boardSearchForm);
         return "board/page";
     }
 

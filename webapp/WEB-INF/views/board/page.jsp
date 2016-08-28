@@ -5,7 +5,7 @@
 <page:defaultpage>
 
     <c:url var="url" value="/board/page" />
-    <page:pagination url="${url}" page="${page}"></page:pagination>
+    <page:pagination url="${url}" page="${page}" form="${boardSearchForm}"></page:pagination>
 
     <table class="table">
         <thead>

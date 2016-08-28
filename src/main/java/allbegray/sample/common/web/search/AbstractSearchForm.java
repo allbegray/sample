@@ -2,9 +2,11 @@ package allbegray.sample.common.web.search;
 
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +61,18 @@ public abstract class AbstractSearchForm {
             throw new RuntimeException(e);
         }
         return builder.toUriString();
+    }
+
+    public String getParams() {
+        StringBuilder sb = new StringBuilder();
+        for (Parameter param : makeParameters()) {
+            try {
+                sb.append("&").append(param.getField()).append("=").append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return sb.toString();
     }
 
 }

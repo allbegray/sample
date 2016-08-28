@@ -23,8 +23,8 @@ class BoardRestController {
     private BoardService boardService;
 
     @RequestMapping(value = "/list", method = {GET, POST})
-    public Page<BoardDTO> list(Pageable pageable, Model model) {
-        return boardService.findAllByContext(pageable);
+    public Page<BoardDTO> list(BoardSearchForm boardSearchForm, Pageable pageable, Model model) {
+        return boardService.findAllByContext(boardSearchForm, pageable);
     }
 
 }

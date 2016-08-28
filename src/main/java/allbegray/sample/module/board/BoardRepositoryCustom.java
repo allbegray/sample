@@ -1,6 +1,7 @@
 package allbegray.sample.module.board;
 
 import allbegray.sample.dto.BoardDTO;
+import allbegray.sample.web.board.BoardSearchForm;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -9,6 +10,6 @@ import org.springframework.data.domain.Pageable;
  */
 public interface BoardRepositoryCustom {
 
-    Page<BoardDTO> findAllByContext(Pageable pageable);
+    Page<BoardDTO> findAllByContext(BoardSearchForm boardSearchForm, Pageable pageable);
 
 }
