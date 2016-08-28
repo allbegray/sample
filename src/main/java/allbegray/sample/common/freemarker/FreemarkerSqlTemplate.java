@@ -54,9 +54,7 @@ public class FreemarkerSqlTemplate {
             dynamicQuery.setParameters(paramMethod.getParams());
             return dynamicQuery;
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (TemplateException e) {
+        } catch (IOException | TemplateException e) {
             throw new RuntimeException(e);
         }
     }

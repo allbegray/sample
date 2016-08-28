@@ -1,8 +1,12 @@
 package allbegray.sample.web.board;
 
+import allbegray.sample.common.spring.PageWrapper;
+import allbegray.sample.dto.BoardDTO;
 import allbegray.sample.entity.Board;
 import allbegray.sample.module.board.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,6 +33,21 @@ public class BoardController {
     @InitBinder
     public void initBinder(WebDataBinder webDataBinder) {
         webDataBinder.setAllowedFields("title", "content");
+    }
+
+    @RequestMapping(value = "/page")
+    public String page(Pageable pageable, Model model) {
+
+//        for (int i = 0; i < 100; i++) {
+//            Board board = new Board();
+//            board.setTitle("제목" + (i + 1));
+//            board.setContent("내용" + (i + 1));
+//            boardService.save(board);
+//        }
+
+        Page<BoardDTO> page = boardService.findAllByContext(pageable);
+        model.addAttribute("page", new PageWrapper<>(page));
+        return "board/page";
     }
 
     @RequestMapping(value = {"", "/", "index"}, method = GET)
