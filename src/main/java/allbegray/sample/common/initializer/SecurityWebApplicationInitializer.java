@@ -4,7 +4,6 @@ import allbegray.sample.Constants;
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
-import org.springframework.web.multipart.support.MultipartFilter;
 
 import javax.servlet.ServletContext;
 
@@ -19,9 +18,9 @@ public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplic
 
         insertFilters(servletContext, new HiddenHttpMethodFilter());
 
-        MultipartFilter multipartFilter = new MultipartFilter();
-        multipartFilter.setMultipartResolverBeanName("multipartResolver");
-        insertFilters(servletContext, multipartFilter);
+//        MultipartFilter multipartFilter = new MultipartFilter();
+//        multipartFilter.setMultipartResolverBeanName("multipartResolver");
+//        insertFilters(servletContext, multipartFilter);
     }
 
 }

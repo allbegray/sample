@@ -6,7 +6,7 @@
 <page:defaultpage>
 
     <c:set var="actionUrl">${s:mvcUrl("boardController.save").build()}</c:set>
-    <form:form commandName="boardForm" action="${actionUrl}" enctype="multipart/form-data">
+    <form:form modelAttribute="boardForm" action="${actionUrl}" enctype="multipart/form-data">
         <form:hidden path="id"/>
         <div>
             제목 : <form:input path="title"/><form:errors path="title"/>
