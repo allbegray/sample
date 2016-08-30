@@ -85,7 +85,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         return validator();
     }
 
-    @Bean
+    @Bean(name = "multipartResolver")
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
         multipartResolver.setDefaultEncoding(Constants.ENCODING);

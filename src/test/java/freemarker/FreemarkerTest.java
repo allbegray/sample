@@ -50,7 +50,7 @@ public class FreemarkerTest {
     @Test
     public void test() throws IOException, TemplateException {
         FreemarkerSqlTemplateFactory templateFactory = new FreemarkerSqlTemplateFactory();
-        templateFactory.setDirectoryForTemplate(new ClassPathResource("/templates").getFile());
+        templateFactory.setDirectoryForTemplate(new ClassPathResource("templates").getFile());
         FreemarkerSqlTemplate sqlTemplate = templateFactory.getObject();
 
         SearchContext sc = new SearchContext();

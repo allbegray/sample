@@ -2,6 +2,7 @@ package allbegray.sample.module.board;
 
 import allbegray.sample.dto.BoardDTO;
 import allbegray.sample.entity.Board;
+import allbegray.sample.web.board.BoardForm;
 import allbegray.sample.web.board.BoardSearchForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,6 +32,17 @@ public class BoardService {
     @Transactional(readOnly = true)
     public Board findOne(Long id) {
         return boardRepository.findOne(id);
+    }
+
+    @Transactional
+    public Board save(BoardForm boardForm) {
+        Board board = new Board();
+        if (boardForm.getId() != null) {
+            board = this.findOne(boardForm.getId());
+        }
+        board.setTitle(boardForm.getTitle());
+        board.setContent(boardForm.getContent());
+        return this.save(board);
     }
 
 }
