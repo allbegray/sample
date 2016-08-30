@@ -1,7 +1,6 @@
 package allbegray.sample.common.config;
 
 import allbegray.sample.Constants;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -11,25 +10,27 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 
 /**
  * Created by allbegray on 2016-04-28.
  */
 @Configuration
+@EnableAsync
 @ComponentScan(basePackages = Constants.BASE_PACKAGE, excludeFilters = {@ComponentScan.Filter({Configuration.class, Controller.class})})
-@Import(value = {PersistenceConfig.class})
+@Import(value = {PersistenceConfig.class, MailConfig.class})
 public class RootConfig {
 
     @Bean
     public ObjectMapper objectMapper() {
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        objectMapper.registerModule(new JavaTimeModule());
-
-        return objectMapper;
+        return Jackson2ObjectMapperBuilder
+                .json()
+                .featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+                .failOnUnknownProperties(false)
+                .modules(new JavaTimeModule())
+                .build();
     }
 
     @Bean
