@@ -16,7 +16,7 @@
 
         <c:choose>
             <c:when test="${page.hasPrevious()}">
-                <li><a href="${url}?page=${page.number}&size=${page.size}${form.params}">prev</a></li>
+                <li><a href="${url}?page=${page.number - 1}&size=${page.size}${form.params}">prev</a></li>
             </c:when>
             <c:otherwise>
                 <li class="disabled"><a href="#">prev</a></li>
@@ -36,7 +36,7 @@
 
         <c:choose>
             <c:when test="${page.hasNext()}">
-                <li><a href="${url}?page=${page.number + 2}&size=${page.size}${form.params}">next</a></li>
+                <li><a href="${url}?page=${page.number + 1}&size=${page.size}${form.params}">next</a></li>
             </c:when>
             <c:otherwise>
                 <li class="disabled"><a href="#">next</a></li>

@@ -18,7 +18,7 @@ public class PageWrapper<T> {
         this.page = page;
         items = new ArrayList<PageItem>();
 
-        int currentNumber = getNumber() + 1;
+        int currentNumber = getNumber();
 
         int start, size;
         if (page.getTotalPages() <= MAX_PAGE_ITEM_DISPLAY) {
@@ -47,7 +47,7 @@ public class PageWrapper<T> {
     }
 
     public int getNumber() {
-        return page.getNumber();
+        return page.getNumber() + 1;
     }
 
     public List<T> getContent() {
