@@ -9,6 +9,8 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
+import org.springframework.data.web.SortHandlerMethodArgumentResolver;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -46,6 +48,18 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
     private MessageSource messageSource;
+
+    @Bean
+    public PageableHandlerMethodArgumentResolver pageableResolver() {
+        PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver(sortResolver());
+        resolver.setOneIndexedParameters(true);
+        return resolver;
+    }
+
+    @Bean
+    public SortHandlerMethodArgumentResolver sortResolver() {
+        return new SortHandlerMethodArgumentResolver();
+    }
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {

@@ -209,6 +209,13 @@
             <version>${com.querydsl.version}</version>
         </dependency>
 
+        <!-- jooq -->
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq</artifactId>
+            <version>3.8.4</version>
+        </dependency>
+
         <!-- validator -->
         <dependency>
             <groupId>org.hibernate</groupId>

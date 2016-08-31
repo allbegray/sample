@@ -16,7 +16,7 @@
                 keyword: params.searchText,
                 sort: params.sortName + "," + params.sortOrder,
                 size: params.pageSize,
-                page: params.pageNumber - 1
+                page: params.pageNumber
             };
         },
         queryParamsType: '',
