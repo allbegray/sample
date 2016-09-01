@@ -15,7 +15,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import static allbegray.sample.common.jooq.JooqUtils.getSortFields;
+import static allbegray.sample.common.jooq.JooqUtils.orderSpecifiers;
 
 /**
  * Created by allbegray on 2016-09-01.
@@ -41,7 +41,7 @@ public class JooqTest {
         PageRequest pageRequest = new PageRequest(0, 10, Sort.Direction.DESC, "title");
 
         SelectConditionStep<Record> query = create.select().from(DSL.table("board")).where(DSL.field("title", String.class).like("제목%"));
-        query.orderBy(getSortFields(pageRequest.getSort()));
+        query.orderBy(orderSpecifiers(pageRequest.getSort()));
 
         create.fetchCount(query);
         query.fetch();

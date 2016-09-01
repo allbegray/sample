@@ -19,7 +19,7 @@ public class JooqUtils {
      * @param sortSpecification
      * @return
      */
-    public static Collection<SortField<?>> getSortFields(Sort sortSpecification) {
+    public static Collection<SortField<?>> orderSpecifiers(Sort sortSpecification) {
         Collection<SortField<?>> querySortFields = new ArrayList<>();
 
         if (sortSpecification == null) {
